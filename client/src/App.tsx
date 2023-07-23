@@ -26,20 +26,20 @@ const App: React.FC = () => {
 
   return (
     <>
-      <main className='container w-auto flex flex-col'>
-        <header className='bg-slate-300 py-4'>
+      <main className='w-auto flex flex-col'>
+        <header className='bg-slate-300 py-4 pb-0'>
           <h1
-            className='text-emerald-700 font-bold text-center text-3xl m-4 mb-6'
+            className='text-emerald-500 text-center text-3xl m-4 mb-0'
           >
             TUPACA CHALLENGE
           </h1>
-          <nav className='flex mx-20'>
+          <nav className='flex px-20 pb-5 shadow-lg'>
             <NavbarButton componentName={'Add'} setNavbarBtn={setNavbarBtn} />
             <NavbarButton componentName={'Search'} setNavbarBtn={setNavbarBtn} />
             <NavbarButton componentName={'Filter'} setNavbarBtn={setNavbarBtn} />
           </nav>
 
-          <div className={navbarBtn.enableAdd ? 'block p-4' : 'hidden'}>
+          <div className={navbarBtn.enableAdd ? 'block p-4 bg-slate-200' : 'hidden'}>
             <AddTaskButton setTasks={setTasks} />
           </div>
           <div className={navbarBtn.enableSearch ? 'block p-4' : 'hidden'}>
