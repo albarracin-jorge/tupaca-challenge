@@ -37,7 +37,7 @@ npm run dev
 npm run prod
 ~~~
 
-#### Nota: El servidor se conecta a Mongo por medio de autenticación, en caso de que mongo no cuente con autenticación reemplazar en src/conn.ts la url por: "mongodb://localhost:270127/tupaca"
+#### Nota: El servidor se conecta a Mongo por medio de autenticación, en caso de que mongo no cuente con autenticación remover las opciones que se incluyen como parámetro en la función mongoose.connect()
 
 ## Estructura del proyecto
 ~~~
