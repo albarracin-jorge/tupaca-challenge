@@ -24,7 +24,7 @@ npm install && npm run i-client
 ### Ejecutar entorno de desarrollo
 Servidor:
 ~~~
-npm run dev 
+npm run server 
 ~~~
 Cliente:
 ~~~
