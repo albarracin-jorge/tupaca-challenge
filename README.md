@@ -17,6 +17,7 @@ git clone https://github.com/albarracin-jorge/tupaca-challenge.git
 
 ### Instalar dependencias
 ~~~
+cd tupaca-challenge
 npm install && npm run i-client
 ~~~
 
