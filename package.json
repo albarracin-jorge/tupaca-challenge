@@ -9,11 +9,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node ./build/index.js",
     "client": "cd client && npm run build && npm run preview",
+    "i-client": "cd ./client && npm install",
     "prod": "npm run server & npm run client"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "client": "file:client",
     "cors": "^2.8.5",
     "express": "4.18.2",
     "mongoose": "^7.4.0",
