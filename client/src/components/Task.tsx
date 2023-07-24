@@ -12,7 +12,7 @@ interface Props {
 export const Task: React.FC<Props> = ({ task, setTasks }) => {
     const [status, setStatus] = useState(task.status);
 
-    const { nostarted, started, done } = STATUS;
+    const [nostarted, started, done] = STATUS;
 
     let statusClass = 'bg-gray-200 hover:bg-gray-300 shadow-gray-400';
     if (status == started) statusClass = 'bg-blue-300 hover:bg-blue-400 shadow-blue-400 hover:shadow-blue-500';

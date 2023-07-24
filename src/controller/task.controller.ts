@@ -11,7 +11,6 @@ export const createTask = async (body: TaskCreateParam) => {
         await connection();
         const { title, description } = body;
         await Task.create({ title, description });
-        console.log(`creando...`);
 
         return { success: true };
     } catch (error) {
@@ -47,7 +46,6 @@ export const filterByTitle = async (body: TaskFilterTitleParam) => {
         TaskFilterTitleParamSchema.parse(body);
         await connection();
         const regex = new RegExp(`^${body.title}`, "i");
-        console.log(regex);
 
         const result = await Task.find({ title: regex, enable: true });
         return { success: true, result };

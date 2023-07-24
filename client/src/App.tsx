@@ -2,23 +2,22 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { ListTasks } from './components/ListTasks'
 import { getTasks } from './utils/fetch'
-import { AddTaskButton } from './components/AddTask'
-import { SearchTasksInput } from './components/Search'
-import { FilterStatusButton } from './components/FilterStatus'
 import { NavbarButton } from './components/NavbarButton'
+import { NavbarComponents } from './components/NavbarComponents'
+import { SortButton } from './components/SortButton'
 import {
-  type TaskStatus,
   type ListOfTasks,
 } from './types'
 import {
   MOCK,
-  STATUS,
-  NAVBAR_BTN_STATUS
+  NAVBAR_BTN_STATUS,
+  NAVBAR_OPTIONS
 } from './utils/const'
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<ListOfTasks>(MOCK)
   const [navbarBtn, setNavbarBtn] = useState(NAVBAR_BTN_STATUS)
+  const [showNavbarComponent, setHiddeNavbarComponent] = useState(true)
 
   useEffect(() => {
     getTasks().then((response) => setTasks(response || MOCK));
@@ -29,46 +28,44 @@ const App: React.FC = () => {
       <main className='w-auto flex flex-col'>
         <header className='bg-slate-300 py-4 pb-0'>
           <h1
-            className='text-emerald-500 text-center text-3xl m-4 mb-0'
+            className='text-emerald-500 text-center text-3xl m-4 mb-10'
           >
             TUPACA CHALLENGE
           </h1>
-          <nav className='flex px-20 pb-5 shadow-lg'>
-            <NavbarButton componentName={'Add'} setNavbarBtn={setNavbarBtn} />
-            <NavbarButton componentName={'Search'} setNavbarBtn={setNavbarBtn} />
-            <NavbarButton componentName={'Filter'} setNavbarBtn={setNavbarBtn} />
+          <nav className='flex px-20 pb-5 shadow-lg w-full lg:px-96'>
+            {NAVBAR_OPTIONS.map((componentName) => (
+              <NavbarButton
+                key={componentName}
+                componentName={componentName}
+                navbarBtn={navbarBtn}
+                setNavbarBtn={setNavbarBtn}
+                showNavbarComponent={showNavbarComponent}
+                setHiddeNavbarComponent={setHiddeNavbarComponent}
+              />
+            )
+            )}
           </nav>
-
-          <div className={navbarBtn.enableAdd ? 'block p-4 bg-slate-200' : 'hidden'}>
-            <AddTaskButton setTasks={setTasks} />
-          </div>
-          <div className={navbarBtn.enableSearch ? 'block p-4' : 'hidden'}>
-            <SearchTasksInput tasks={tasks} setTasks={setTasks} />
-          </div>
-          <div className={navbarBtn.enableFilter ? 'block px-10 py-4' : 'hidden'}>
-            <div className='grid grid-cols-2 gap-2 gap-x-0 mx-5'>
-              <FilterStatusButton
-                tasks={tasks} setTasks={setTasks}
-              />
-              <FilterStatusButton
-                status={STATUS.nostarted as TaskStatus}
-                tasks={tasks}
-                setTasks={setTasks}
-              />
-              <FilterStatusButton
-                status={STATUS.started as TaskStatus}
-                tasks={tasks}
-                setTasks={setTasks}
-              />
-              <FilterStatusButton
-                status={STATUS.done as TaskStatus}
-                tasks={tasks}
-                setTasks={setTasks}
-              />
-            </div>
-          </div>
+          <NavbarComponents
+            tasks={tasks}
+            setTasks={setTasks}
+            navbarBtn={navbarBtn}
+          />
         </header>
-        <ListTasks tasks={tasks} setTasks={setTasks} />
+        <div className='max-w-xl mx-auto'>
+          <SortButton
+            name='Nombre'
+            sortBy={'title'}
+            tasks={tasks}
+            setTasks={setTasks}
+          />
+          <SortButton
+            name='Fecha'
+            sortBy='date'
+            tasks={tasks}
+            setTasks={setTasks}
+          />
+          <ListTasks tasks={tasks} setTasks={setTasks} />
+        </div>
       </main>
     </>
   )

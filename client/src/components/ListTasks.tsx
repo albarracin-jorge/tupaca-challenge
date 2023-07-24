@@ -6,6 +6,8 @@ interface Props {
     setTasks: React.Dispatch<React.SetStateAction<ListOfTasks>>
 }
 export const ListTasks: React.FC<Props> = ({ tasks, setTasks }) => {
+    console.log(tasks);
+
     return (
         <div className="m-8">
             {tasks.map((task) => (

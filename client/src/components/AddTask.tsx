@@ -6,8 +6,8 @@ type Props = {
     setTasks: React.Dispatch<React.SetStateAction<ListOfTasks>>
 }
 export const AddTaskButton: React.FC<Props> = ({ setTasks }) => {
-    const [title, setTitle] = useState('Make a nice task!');
-    const [description, setDescription] = useState('Describe your nice task!');
+    const [title, setTitle] = useState('Agrega una tarea!');
+    const [description, setDescription] = useState('Describe tu tarea!');
 
     const handlerForm = async (event: SyntheticEvent) => {
         event.preventDefault();
@@ -15,7 +15,6 @@ export const AddTaskButton: React.FC<Props> = ({ setTasks }) => {
         await addTask({ title, description });
         const updateTasks = await getTasks();
         setTasks(updateTasks as ListOfTasks);
-        console.log(updateTasks);
     }
     return (
         <form onSubmit={handlerForm} className="flex flex-col mx-auto">

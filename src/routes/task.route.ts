@@ -24,8 +24,6 @@ router.get('/status/:status', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    console.log(`creando`);
-
     const result = await createTask(req.body);
     if (result.success) return res.send(result);
     return res.status(500).send(result.error);
